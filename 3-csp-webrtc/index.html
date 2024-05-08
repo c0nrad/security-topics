@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-eval' 'unsafe-inline';" />
+  </head>
+
+  <body>
+    <h3>CSP Demo</h3>
+
+    <p id="flag">ctf{placeholder_fake_flag}</p>
+
+    <form method="GET" action="/">
+      <textarea id="payload" name="payload" rows="4" cols="50"></textarea>
+
+      <br />
+      <input type="submit" value="Submit" />
+    </form>
+
+    <script>
+      const urlParams = new URLSearchParams(window.location.search);
+      const payload = urlParams.get("payload");
+
+      if (payload) {
+        document.getElementById("payload").value = payload;
+      }
+
+      console.log(payload);
+
+      eval(payload);
+    </script>
+  </body>
+</html>
+
+<!-- fetch('/').then( (a) => { console.log(a); }); -->
+
+<!-- var img = document.createElement("img");
+img.src = "http://www.google.com/intl/en_com/images/logo_plain.png";
+var src = document.getElementById("flag");
+src.appendChild(img); -->
